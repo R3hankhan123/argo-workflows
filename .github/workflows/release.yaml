@@ -22,7 +22,7 @@ permissions:
 jobs:
   build-linux:
     name: Build & push linux
-    if: github.repository == 'argoproj/argo-workflows'
+    if: github.repository == 'R3hankhan123/argo-workflows'
     runs-on: ubuntu-latest
     strategy:
       matrix:
