@@ -2961,6 +2961,12 @@
             "description": "Fields to be included or excluded in the response. e.g. \"items.spec,items.status.phase\", \"-items.status.nodes\".",
             "name": "fields",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Filter type used for name filtering. Exact | Contains | Prefix. Default to Exact.",
+            "name": "nameFilter",
+            "in": "query"
           }
         ],
         "responses": {
@@ -8999,7 +9005,7 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
         },
         "phase": {
-          "description": "v3.6 and after: Phase is an enum of Active or Stopped. It changes to Stopped when stopStrategy.condition is true",
+          "description": "v3.6 and after: Phase is an enum of Active or Stopped. It changes to Stopped when stopStrategy.expression is true",
           "type": "string"
         },
         "succeeded": {
@@ -9296,6 +9302,10 @@
         },
         "insecureIgnoreHostKey": {
           "description": "InsecureIgnoreHostKey disables SSH strict host key checking during git clone",
+          "type": "boolean"
+        },
+        "insecureSkipTLS": {
+          "description": "InsecureSkipTLS disables server certificate verification resulting in insecure HTTPS connections",
           "type": "boolean"
         },
         "passwordSecret": {
@@ -10861,14 +10871,14 @@
       }
     },
     "io.argoproj.workflow.v1alpha1.StopStrategy": {
-      "description": "v3.6 and after: StopStrategy defines if the CronWorkflow should stop scheduling based on a condition",
+      "description": "StopStrategy defines if the CronWorkflow should stop scheduling based on an expression. v3.6 and after",
       "type": "object",
       "required": [
-        "condition"
+        "expression"
       ],
       "properties": {
-        "condition": {
-          "description": "v3.6 and after: Condition is an expression that stops scheduling workflows when true. Use the variables `failed` or `succeeded` to access the number of failed or successful child workflows.",
+        "expression": {
+          "description": "v3.6 and after: Expression is an expression that stops scheduling workflows when true. Use the variables `cronworkflow`.`failed` or `cronworkflow`.`succeeded` to access the number of failed or successful child workflows.",
           "type": "string"
         }
       }

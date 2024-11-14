@@ -4972,7 +4972,7 @@
           "description": "LastScheduleTime is the last time the CronWorkflow was scheduled"
         },
         "phase": {
-          "description": "v3.6 and after: Phase is an enum of Active or Stopped. It changes to Stopped when stopStrategy.condition is true",
+          "description": "v3.6 and after: Phase is an enum of Active or Stopped. It changes to Stopped when stopStrategy.expression is true",
           "type": "string"
         },
         "succeeded": {
@@ -5274,6 +5274,10 @@
         },
         "insecureIgnoreHostKey": {
           "description": "InsecureIgnoreHostKey disables SSH strict host key checking during git clone",
+          "type": "boolean"
+        },
+        "insecureSkipTLS": {
+          "description": "InsecureSkipTLS disables server certificate verification resulting in insecure HTTPS connections",
           "type": "boolean"
         },
         "passwordSecret": {
@@ -6843,15 +6847,15 @@
       "type": "object"
     },
     "io.argoproj.workflow.v1alpha1.StopStrategy": {
-      "description": "v3.6 and after: StopStrategy defines if the CronWorkflow should stop scheduling based on a condition",
+      "description": "StopStrategy defines if the CronWorkflow should stop scheduling based on an expression. v3.6 and after",
       "properties": {
-        "condition": {
-          "description": "v3.6 and after: Condition is an expression that stops scheduling workflows when true. Use the variables `failed` or `succeeded` to access the number of failed or successful child workflows.",
+        "expression": {
+          "description": "v3.6 and after: Expression is an expression that stops scheduling workflows when true. Use the variables `cronworkflow`.`failed` or `cronworkflow`.`succeeded` to access the number of failed or successful child workflows.",
           "type": "string"
         }
       },
       "required": [
-        "condition"
+        "expression"
       ],
       "type": "object"
     },
