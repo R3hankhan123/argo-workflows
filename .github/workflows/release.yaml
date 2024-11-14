@@ -6,7 +6,7 @@ on:
       - v*
     branches:
       - main
-      - dev-*
+      - s390x
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -27,7 +27,7 @@ jobs:
     strategy:
       matrix:
         platform: [ linux/amd64, linux/arm64,linux/s390x,linux/ppc64le ]
-        target: [ workflow-controller, argocli, argoexec ]
+        target: [ workflow-controller, argoexec ]
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
@@ -163,7 +163,7 @@ jobs:
             tag="latest"
           fi
 
-          targets="workflow-controller argoexec argocli"
+          targets="workflow-controller argoexec "
           for target in $targets; do
             image_name="${docker_org}/${target}:${tag}"
 
