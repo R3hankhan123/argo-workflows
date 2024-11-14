@@ -2,11 +2,9 @@ name: Release
 
 on:
   push:
-    tags:
-      - v*
     branches:
       - master
-      - dev-*
+      - s390x
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
